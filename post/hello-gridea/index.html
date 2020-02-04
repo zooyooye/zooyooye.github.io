@@ -2,11 +2,11 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Hello Gridea | Gridea</title>
-<link rel="shortcut icon" href="https://zooyooye.github.io/favicon.ico?v=1580820587561">
+<title>Hello Gridea | 大佬分享社</title>
+<link rel="shortcut icon" href="https://zooyooye.github.io/favicon.ico?v=1580826007133">
 <link href="https://cdn.remixicon.com/releases/v2.1.0/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://zooyooye.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="Hello Gridea | Gridea - Atom Feed" href="https://zooyooye.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="Hello Gridea | 大佬分享社 - Atom Feed" href="https://zooyooye.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
@@ -28,13 +28,13 @@ Gridea 主页
       <div class="main-content">
         <div class="site-header">
   <a href="https://zooyooye.github.io">
-  <img class="avatar" src="https://zooyooye.github.io/images/avatar.png?v=1580820587561" alt="">
+  <img class="avatar" src="https://zooyooye.github.io/images/avatar.png?v=1580826007133" alt="">
   </a>
   <h1 class="site-title">
-    Gridea
+    大佬分享社
   </h1>
   <p class="site-description">
-    温故而知新
+    good good study
   </p>
   <div class="menu-container">
     
@@ -140,6 +140,32 @@ Gridea 主页
 
         
 
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: 'f93b327b3b9bfa8f1f94',
+    clientSecret: 'e0771dfd40453ab6dccd7a5afb330c131bbba160',
+    repo: 'zooyooye.github.io',
+    owner: 'zooyooye',
+    admin: ['zooyooye'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
         
 
         <div class="site-footer">
