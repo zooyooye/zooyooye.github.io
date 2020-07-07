@@ -1,5 +1,5 @@
 <div class="post-container">
-  <% posts.forEach(function(post,seq) { %>
+  <% posts.forEach(function(post) { %>
     <article class="post">
       <a href="<%= post.link %>">
         <h2 class="post-title"><%= post.title %></h2>
@@ -14,9 +14,13 @@
           </a>
         <% }); %>
       </div>
-      <div class="post-abstract" style="word-break: break-all">
+      <% if (themeConfig.showFeatureImage && post.feature) { %>
+        <a href="<%= post.link %>" class="post-feature-image" style="background-image: url('<%= post.feature %>')">
+        </a>
+      <% } %>
+      <div class="post-abstract">
         <%- post.searchedPreview %>
-      </div>
+      </di>
     </article>
   <% }); %>
 </div>
