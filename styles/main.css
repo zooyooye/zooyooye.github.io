@@ -2182,7 +2182,9 @@ body {
     }
     .mist .site-title i {
       background: #FFFFFFfe;
-    }.box-shadow-wrapper {
+    }.bg-img img {
+        filter: blur(开px)
+      }.box-shadow-wrapper {
       box-shadow: none !important;
     }body {
       cursor: default;
