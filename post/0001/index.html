@@ -9,7 +9,7 @@
 <meta name="description" content="good good study">
 <meta name="theme-color" content="#000">
 <title>每日更新（建筑篇一） | 大佬分享社</title>
-<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/zooyooye/zooyooye.github.io@master/favicon.ico?v=1595434167560">
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/zooyooye/zooyooye.github.io@master/favicon.ico?v=1595762117618">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zooyooye/zooyooye.github.io@master/media/css/pisces.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zooyooye/zooyooye.github.io@master/media/fonts/font-awesome.css">
 <link
@@ -200,7 +200,8 @@
       <div class="sidebar-body pisces" id="sidebar_body">
         
           
-            
+            <div class="post-side-meta" id="post_side_meta">
+              
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="https://cdn.jsdelivr.net/gh/zooyooye/zooyooye.github.io@master/images/avatar.png"/>
@@ -245,6 +246,202 @@
 
 
 </div>
+            </div>
+            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+              <div class="toc-box right-motion">
+  <div class="toc-wrapper auto-number auto"
+    id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li><a href="#721%E6%9B%B4%E6%96%B0">7.21更新</a>
+<ul>
+<li><a href="#2020%E4%B8%80%E5%BB%BA%E7%BB%8F%E6%B5%8E">2020一建经济</a></li>
+<li><a href="#2020%E4%B8%80%E5%BB%BA%E6%B3%95%E8%A7%84">2020一建法规</a></li>
+<li><a href="#2020%E4%B8%80%E5%BB%BA%E7%AE%A1%E7%90%86">2020一建管理</a></li>
+</ul>
+</li>
+<li><a href="#719%E6%9B%B4%E6%96%B0">7.19更新</a>
+<ul>
+<li><a href="#2020%E4%B8%80%E5%BB%BA%E6%9C%BA%E7%94%B5">2020一建机电</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+</div>
+
+<script>
+
+  let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1;
+  let active = 'active-show', activeClass = 'active-current';
+  let tocWrapper = document.querySelector('#toc_wrapper');
+  let tocContent = tocWrapper.children[0];
+  let autoNumber = tocWrapper && tocWrapper.classList.contains('auto-number');
+
+  function addTocNumber(elem, deep) {
+    if (!elem) {
+      return;
+    }
+    let prop = elem.__proto__;
+
+    if (prop === HTMLUListElement.prototype) {
+      for (let i = 0; i < elem.children.length; i++) {
+        addTocNumber(elem.children[i], deep + (i + 1) + '.');
+      }
+    } else if (prop === HTMLLIElement.prototype) {
+      // 保存li元素
+      if (elem.children[0] && elem.children[0].__proto__ === HTMLAnchorElement.prototype) {
+        lList.push(elem);
+      }
+      for (let i = 0; i < elem.children.length; i++) {
+        let cur = elem.children[i];
+        if (cur.__proto__ === HTMLAnchorElement.prototype) {
+          if (autoNumber) {
+            cur.text = deep + ' ' + cur.text;
+          }
+        } else if (cur.__proto__ === HTMLUListElement.prototype) {
+          addTocNumber(cur, deep);
+        }
+      }
+    }
+  }
+
+  function removeParentActiveClass() {
+    let parents = tocContent.querySelectorAll('.' + active)
+    parents.forEach(function (elem) {
+      elem.classList.remove(active);
+    });
+  }
+
+  function addActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.add(activeClass);
+    }
+  }
+
+  function removeActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.remove(activeClass);
+    }
+  }
+
+  function addActiveLiElemment(elem, parent) {
+    if (!elem || elem === parent) {
+      return;
+    } else {
+      if (elem.__proto__ === HTMLLIElement.prototype) {
+        elem.classList.add(active);
+      }
+      addActiveLiElemment(elem.parentElement, parent);
+    }
+  }
+
+  function showToc() {
+    if (tocWrapper) {
+      postBody = document.querySelector('#post_body');
+      for (let i = 0; i < postBody.children.length; i++) {
+        if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+          hList.push(postBody.children[i]);
+        }
+      }
+      if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+      } else if (tocWrapper.classList.contains('no_compress')) {
+        tocContent.classList.add('expanded');
+      } else {
+        if (hList.length > 10) {
+          active = 'active-hidden'
+          tocContent.classList.add('closed');
+        } else {
+          tocContent.classList.add('expanded');
+        }
+      }
+    }
+  }
+
+  (function () {
+    // 处理不是从#一级标题开始目录
+    if (tocContent.children.length === 1 && tocContent.children[0].__proto__ === HTMLLIElement.prototype) {
+      let con = tocContent.children[0].children[0];
+      tocContent.innerHTML = con.innerHTML;
+    }
+    let markdownItTOC = document.querySelector('.markdownIt-TOC');
+    let innerHeight = window.innerHeight;
+    markdownItTOC.style = `max-height: ${innerHeight - 80 > 0 ? innerHeight - 80 : innerHeight}px`
+    addTocNumber(tocContent, '');
+  })();
+
+  document.addEventListener('scroll', function (e) {
+    if (lList.length <= 0) {
+      return;
+    }
+    let scrollTop = document.scrollingElement.scrollTop + 10;
+    let dir;
+
+    if (lastTop - scrollTop > 0) {
+      dir = 'up';
+    } else {
+      dir = 'down';
+    }
+
+    lastTop = scrollTop;
+    if (scrollTop <= 0) {
+      if (lastIndex >= 0 && lastIndex < hList.length) {
+        lList[lastIndex].classList.remove(activeClass);
+      }
+      return;
+    }
+
+    let current = 0, hasFind = false;
+    for (let i = 0; i < hList.length; i++) {
+      if (hList[i].offsetTop > scrollTop) {
+        current = i;
+        hasFind = true;
+        break;
+      }
+    }
+    if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+      current = hList.length - 1;
+    } else {
+      current--;
+    }
+    if (dir === 'down') {
+      if (current > lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex)
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    } else {
+      if (current < lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex);
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    }
+  });
+
+
+  window.addEventListener('load', function () {
+    showToc();
+    document.querySelector('#sidebar').style = 'display: block;';
+    tocWrapper.classList.add('toc-active');
+    setTimeout(function () {
+      if ("createEvent" in document) {
+        let evt = document.createEvent("HTMLEvents");
+        evt.initEvent("scroll", false, true);
+        document.dispatchEvent(evt);
+      }
+      else {
+        document.fireEvent("scroll");
+      }
+    }, 500)
+  })
+
+</script>
+            </div>
           
         
       </div>
@@ -373,9 +570,9 @@
             <div class="post-body next-md-body" id="post_body">
               <p>一建（保留最近七天更新记录）</p>
 <!-- more -->
-<p><strong>7.21更新</strong></p>
-<p><strong>2020一建经济</strong><br>
-精讲班 HX 徐蓉（01-47）<br>
+<h1 id="721更新">7.21更新</h1>
+<h2 id="2020一建经济">2020一建经济</h2>
+<p>精讲班 HX 徐蓉（01-47）<br>
 精讲班 JG 习题班 达江（01~09）、<br>
 精讲班 HX 实景精讲 王小波（更新至51）<br>
 精讲班 ES 基础精讲 王竹梅（16~55）<br>
@@ -385,8 +582,8 @@
 习题班 JGS-高频考点精析<br>
 习题班 ZY-点题直播班-关涛<br>
 冲刺班CSW-考点强化班-李轻舟（0~19）</p>
-<p><strong>2020一建法规</strong><br>
-精讲班 HQ 王丽雪（80~99）<br>
+<h2 id="2020一建法规">2020一建法规</h2>
+<p>精讲班 HQ 王丽雪（80~99）<br>
 习题班 JG 王竹梅（01~04）<br>
 习题班 JGS-高频考点精析<br>
 习题班 ES 刘 丹（01~10）<br>
@@ -394,8 +591,8 @@
 冲刺班 XT-全考点班-武海峰（01~15）<br>
 冲刺班 CSW-考点强化班-李轻舟（01~04）<br>
 冲刺班-法规-ZY-强化技巧课-房超（01~14）</p>
-<p><strong>2020一建管理</strong><br>
-精讲班 JG 基础精讲-丰景春（24~42）<br>
+<h2 id="2020一建管理">2020一建管理</h2>
+<p>精讲班 JG 基础精讲-丰景春（24~42）<br>
 精讲班 JG-习题班-李娜（01）<br>
 精讲班 HQ 肖国祥（30~58）<br>
 精讲班 ZD 宿吉南（29~59）<br>
@@ -405,9 +602,9 @@
 冲刺班 CSW-考点强化班-周军（01~20）<br>
 冲刺班 XT-名师带读-陈晨（01~25）</p>
 <hr>
-<p><strong>7.19更新</strong></p>
-<p><strong>2020一建机电</strong><br>
-精讲班 HQ （59~66）王克<br>
+<h1 id="719更新">7.19更新</h1>
+<h2 id="2020一建机电">2020一建机电</h2>
+<p>精讲班 HQ （59~66）王克<br>
 精讲班 ZY （更新）董美英<br>
 精讲班 ZY 名师带读（07~16）彭磊<br>
 精讲班 JX 面授精讲班（0~31）贾诺斌<br>
@@ -749,13 +946,19 @@
           
           
           
+            <img id="wx" class="reward-img" src="\media\images\custom-wxImg.jpg" alt="赞赏码">
+          
         </div>
       </div>
-      <p class="reward-word">扫码打赏，你说多少就多少</p>
+      <p class="reward-word">万分感谢您的鼓励，我们会努力做到更好！~</p>
       <p class="reward-tip">打开微信扫一扫，即可进行扫码打赏哦</p>
     </div>
     <div class="bottom">
       
+      
+      <div id="wxBtn" class="pay-text">
+        微信支付
+      </div>
       
     </div>
   </div>
@@ -978,23 +1181,24 @@
         <a class="result-title" style="opacity: 0;" href="https://zooyooye.github.io/post/0003/"" data-c="
           &lt;p&gt;监理（保留最近七天更新记录）&lt;/p&gt;
 &lt;!-- more --&gt;
-&lt;p&gt;&lt;strong&gt;2020监理案例&lt;/strong&gt;&lt;br&gt;
-精讲班-HQ-王双增（07~12）&lt;br&gt;
+&lt;h1 id=&#34;0722更新&#34;&gt;07.22更新&lt;/h1&gt;
+&lt;h2 id=&#34;2020监理案例&#34;&gt;2020监理案例&lt;/h2&gt;
+&lt;p&gt;精讲班-HQ-王双增（07~12）&lt;br&gt;
 精讲班-JG-陈江潮（更新）&lt;br&gt;
 精讲班-ES-郭炜（26~38）&lt;br&gt;
 精讲班-CSW-宋协清（01~09）&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;2020监理法规概论&lt;/strong&gt;&lt;br&gt;
-预习班-JG-徐云博（02~03）&lt;br&gt;
+&lt;h2 id=&#34;2020监理法规概论&#34;&gt;2020监理法规概论&lt;/h2&gt;
+&lt;p&gt;预习班-JG-徐云博（02~03）&lt;br&gt;
 预习班-新教材解读-王东兴（01~03）&lt;br&gt;
 精讲班-ESS-汪东兴（01~17）&lt;br&gt;
 精讲班-JG-徐云博（01~13）&lt;br&gt;
 精讲班-HQ-孙玉保（01~19）&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;2020监理合同管理&lt;/strong&gt;&lt;br&gt;
-真题班-HQ-2016-2019真题解析&lt;br&gt;
+&lt;h2 id=&#34;2020监理合同管理&#34;&gt;2020监理合同管理&lt;/h2&gt;
+&lt;p&gt;真题班-HQ-2016-2019真题解析&lt;br&gt;
 预习班-JG-王竹梅（02~03）&lt;br&gt;
 精讲班-ES-唐忍（020~022）&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;2020监理三控&lt;/strong&gt;&lt;br&gt;
-真题班-ZY-真题破解-张佳楠&lt;br&gt;
+&lt;h2 id=&#34;2020监理三控&#34;&gt;2020监理三控&lt;/h2&gt;
+&lt;p&gt;真题班-ZY-真题破解-张佳楠&lt;br&gt;
 预习班-三控-HQ-指导班&lt;br&gt;
 预习班-三控-ESS-新教材讲解&lt;br&gt;
 预习班-进度-JG-预习班-李娜&lt;br&gt;
@@ -1007,15 +1211,15 @@
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://zooyooye.github.io/post/0002/"" data-c="
           &lt;p&gt;二建（保留最近七天更新记录）&lt;/p&gt;
-&lt;!-- more --&gt;
-&lt;p&gt;&lt;strong&gt;07.22更新&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;2020二建市政&lt;/strong&gt;&lt;br&gt;
-预习班 JG-李毅佳&lt;br&gt;
+&lt;h1 id=&#34;-more-0722更新&#34;&gt;&lt;!-- more --&gt;&lt;br&gt;
+07.22更新&lt;/h1&gt;
+&lt;h2 id=&#34;2020二建市政&#34;&gt;2020二建市政&lt;/h2&gt;
+&lt;p&gt;预习班 JG-李毅佳&lt;br&gt;
 真题班 XBL-真题案例班-小白龙&lt;br&gt;
 模考班  Z Y-模考点题班-颜海&lt;br&gt;
 模考班 X T-每周一考-刘正飞&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;2020二建法规&lt;/strong&gt;&lt;br&gt;
-预习班-JG-预习进阶-达@江（02~03）&lt;br&gt;
+&lt;h2 id=&#34;2020二建法规&#34;&gt;2020二建法规&lt;/h2&gt;
+&lt;p&gt;预习班-JG-预习进阶-达@江（02~03）&lt;br&gt;
 精讲班-HQ-基础直播-安国庆（更新）&lt;br&gt;
 习题班-YL-01轮习题-苏老师（19~34）&lt;br&gt;
 冲刺班-ZY-长效提升-房@超（02~06）&lt;br&gt;
@@ -1051,9 +1255,9 @@
         <a class="result-title" style="opacity: 0;" href="https://zooyooye.github.io/post/0001/"" data-c="
           &lt;p&gt;一建（保留最近七天更新记录）&lt;/p&gt;
 &lt;!-- more --&gt;
-&lt;p&gt;&lt;strong&gt;7.21更新&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;2020一建经济&lt;/strong&gt;&lt;br&gt;
-精讲班 HX 徐蓉（01-47）&lt;br&gt;
+&lt;h1 id=&#34;721更新&#34;&gt;7.21更新&lt;/h1&gt;
+&lt;h2 id=&#34;2020一建经济&#34;&gt;2020一建经济&lt;/h2&gt;
+&lt;p&gt;精讲班 HX 徐蓉（01-47）&lt;br&gt;
 精讲班 JG 习题班 达江（01~09）、&lt;br&gt;
 精讲班 HX 实景精讲 王小波（更新至51）&lt;br&gt;
 精讲班 ES 基础精讲 王竹梅（16~55）&lt;br&gt;
@@ -1063,8 +1267,8 @@
 习题班 JGS-高频考点精析&lt;br&gt;
 习题班 ZY-点题直播班-关涛&lt;br&gt;
 冲刺班CSW-考点强化班-李轻舟（0~19）&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;2020一建法规&lt;/strong&gt;&lt;br&gt;
-精讲班 HQ 王丽雪（80~99）&lt;br&gt;
+&lt;h2 id=&#34;2020一建法规&#34;&gt;2020一建法规&lt;/h2&gt;
+&lt;p&gt;精讲班 HQ 王丽雪（80~99）&lt;br&gt;
 习题班 JG 王竹梅（01~04）&lt;br&gt;
 习题班 JGS-高频考点精析&lt;br&gt;
 习题班 ES 刘 丹（01~10）&lt;br&gt;
@@ -1072,8 +1276,8 @@
 冲刺班 XT-全考点班-武海峰（01~15）&lt;br&gt;
 冲刺班 CSW-考点强化班-李轻舟（01~04）&lt;br&gt;
 冲刺班-法规-ZY-强化技巧课-房超（01~14）&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;2020一建管理&lt;/strong&gt;&lt;br&gt;
-精讲班 JG 基础精讲-丰景春（24~42）&lt;br&gt;
+&lt;h2 id=&#34;2020一建管理&#34;&gt;2020一建管理&lt;/h2&gt;
+&lt;p&gt;精讲班 JG 基础精讲-丰景春（24~42）&lt;br&gt;
 精讲班 JG-习题班-李娜（01）&lt;br&gt;
 精讲班 HQ 肖国祥（30~58）&lt;br&gt;
 精讲班 ZD 宿吉南（29~59）&lt;br&gt;
@@ -1083,9 +1287,9 @@
 冲刺班 CSW-考点强化班-周军（01~20）&lt;br&gt;
 冲刺班 XT-名师带读-陈晨（01~25）&lt;/p&gt;
 &lt;hr&gt;
-&lt;p&gt;&lt;strong&gt;7.19更新&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;2020一建机电&lt;/strong&gt;&lt;br&gt;
-精讲班 HQ （59~66）王克&lt;br&gt;
+&lt;h1 id=&#34;719更新&#34;&gt;7.19更新&lt;/h1&gt;
+&lt;h2 id=&#34;2020一建机电&#34;&gt;2020一建机电&lt;/h2&gt;
+&lt;p&gt;精讲班 HQ （59~66）王克&lt;br&gt;
 精讲班 ZY （更新）董美英&lt;br&gt;
 精讲班 ZY 名师带读（07~16）彭磊&lt;br&gt;
 精讲班 JX 面授精讲班（0~31）贾诺斌&lt;br&gt;
