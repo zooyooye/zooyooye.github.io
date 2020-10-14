@@ -8,8 +8,8 @@
 <meta name="keywords" content="网络资源分享">
 <meta name="description" content="good good study">
 <meta name="theme-color" content="#000">
-<title>每日更新（建筑篇三） | 大佬分享社</title>
-<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/zooyooye/zooyooye.github.io@master/favicon.ico?v=1599389396833">
+<title>01.BIM技术 | 大佬分享社</title>
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/zooyooye/zooyooye.github.io@master/favicon.ico?v=1602701930307">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zooyooye/zooyooye.github.io@master/media/css/pisces.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zooyooye/zooyooye.github.io@master/media/fonts/font-awesome.css">
 <link
@@ -48,8 +48,8 @@
 </script>
 
 
-  <meta name="description" content="每日更新（建筑篇三）" />
-  <meta name="keywords" content="每日更新" />
+  <meta name="description" content="01.BIM技术" />
+  <meta name="keywords" content="目录" />
 </head>
 
 <body>
@@ -200,8 +200,7 @@
       <div class="sidebar-body pisces" id="sidebar_body">
         
           
-            <div class="post-side-meta" id="post_side_meta">
-              
+            
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="https://cdn.jsdelivr.net/gh/zooyooye/zooyooye.github.io@master/images/avatar.png"/>
@@ -221,7 +220,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">3</span>
+        <span class="site-item-stat-count">2</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -246,198 +245,6 @@
 
 
 </div>
-            </div>
-            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
-              <div class="toc-box right-motion">
-  <div class="toc-wrapper auto-number auto"
-    id="toc_wrapper">
-    <ul class="markdownIt-TOC">
-<li><a href="#0722%E6%9B%B4%E6%96%B0">07.22更新</a>
-<ul>
-<li><a href="#2020%E7%9B%91%E7%90%86%E6%A1%88%E4%BE%8B">2020监理案例</a></li>
-<li><a href="#2020%E7%9B%91%E7%90%86%E6%B3%95%E8%A7%84%E6%A6%82%E8%AE%BA">2020监理法规概论</a></li>
-<li><a href="#2020%E7%9B%91%E7%90%86%E5%90%88%E5%90%8C%E7%AE%A1%E7%90%86">2020监理合同管理</a></li>
-<li><a href="#2020%E7%9B%91%E7%90%86%E4%B8%89%E6%8E%A7">2020监理三控</a></li>
-</ul>
-</li>
-</ul>
-
-  </div>
-</div>
-
-<script>
-
-  let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1;
-  let active = 'active-show', activeClass = 'active-current';
-  let tocWrapper = document.querySelector('#toc_wrapper');
-  let tocContent = tocWrapper.children[0];
-  let autoNumber = tocWrapper && tocWrapper.classList.contains('auto-number');
-
-  function addTocNumber(elem, deep) {
-    if (!elem) {
-      return;
-    }
-    let prop = elem.__proto__;
-
-    if (prop === HTMLUListElement.prototype) {
-      for (let i = 0; i < elem.children.length; i++) {
-        addTocNumber(elem.children[i], deep + (i + 1) + '.');
-      }
-    } else if (prop === HTMLLIElement.prototype) {
-      // 保存li元素
-      if (elem.children[0] && elem.children[0].__proto__ === HTMLAnchorElement.prototype) {
-        lList.push(elem);
-      }
-      for (let i = 0; i < elem.children.length; i++) {
-        let cur = elem.children[i];
-        if (cur.__proto__ === HTMLAnchorElement.prototype) {
-          if (autoNumber) {
-            cur.text = deep + ' ' + cur.text;
-          }
-        } else if (cur.__proto__ === HTMLUListElement.prototype) {
-          addTocNumber(cur, deep);
-        }
-      }
-    }
-  }
-
-  function removeParentActiveClass() {
-    let parents = tocContent.querySelectorAll('.' + active)
-    parents.forEach(function (elem) {
-      elem.classList.remove(active);
-    });
-  }
-
-  function addActiveClass(index) {
-    if (index >= 0 && index < hList.length) {
-      lList[index].classList.add(activeClass);
-    }
-  }
-
-  function removeActiveClass(index) {
-    if (index >= 0 && index < hList.length) {
-      lList[index].classList.remove(activeClass);
-    }
-  }
-
-  function addActiveLiElemment(elem, parent) {
-    if (!elem || elem === parent) {
-      return;
-    } else {
-      if (elem.__proto__ === HTMLLIElement.prototype) {
-        elem.classList.add(active);
-      }
-      addActiveLiElemment(elem.parentElement, parent);
-    }
-  }
-
-  function showToc() {
-    if (tocWrapper) {
-      postBody = document.querySelector('#post_body');
-      for (let i = 0; i < postBody.children.length; i++) {
-        if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
-          hList.push(postBody.children[i]);
-        }
-      }
-      if (tocWrapper.classList.contains('compress')) {
-        tocContent.classList.add('closed');
-      } else if (tocWrapper.classList.contains('no_compress')) {
-        tocContent.classList.add('expanded');
-      } else {
-        if (hList.length > 10) {
-          active = 'active-hidden'
-          tocContent.classList.add('closed');
-        } else {
-          tocContent.classList.add('expanded');
-        }
-      }
-    }
-  }
-
-  (function () {
-    // 处理不是从#一级标题开始目录
-    if (tocContent.children.length === 1 && tocContent.children[0].__proto__ === HTMLLIElement.prototype) {
-      let con = tocContent.children[0].children[0];
-      tocContent.innerHTML = con.innerHTML;
-    }
-    let markdownItTOC = document.querySelector('.markdownIt-TOC');
-    let innerHeight = window.innerHeight;
-    markdownItTOC.style = `max-height: ${innerHeight - 80 > 0 ? innerHeight - 80 : innerHeight}px`
-    addTocNumber(tocContent, '');
-  })();
-
-  document.addEventListener('scroll', function (e) {
-    if (lList.length <= 0) {
-      return;
-    }
-    let scrollTop = document.scrollingElement.scrollTop + 10;
-    let dir;
-
-    if (lastTop - scrollTop > 0) {
-      dir = 'up';
-    } else {
-      dir = 'down';
-    }
-
-    lastTop = scrollTop;
-    if (scrollTop <= 0) {
-      if (lastIndex >= 0 && lastIndex < hList.length) {
-        lList[lastIndex].classList.remove(activeClass);
-      }
-      return;
-    }
-
-    let current = 0, hasFind = false;
-    for (let i = 0; i < hList.length; i++) {
-      if (hList[i].offsetTop > scrollTop) {
-        current = i;
-        hasFind = true;
-        break;
-      }
-    }
-    if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
-      current = hList.length - 1;
-    } else {
-      current--;
-    }
-    if (dir === 'down') {
-      if (current > lastIndex) {
-        addActiveClass(current);
-        removeActiveClass(lastIndex)
-        lastIndex = current;
-        removeParentActiveClass();
-        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
-      }
-    } else {
-      if (current < lastIndex) {
-        addActiveClass(current);
-        removeActiveClass(lastIndex);
-        lastIndex = current;
-        removeParentActiveClass();
-        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
-      }
-    }
-  });
-
-
-  window.addEventListener('load', function () {
-    showToc();
-    document.querySelector('#sidebar').style = 'display: block;';
-    tocWrapper.classList.add('toc-active');
-    setTimeout(function () {
-      if ("createEvent" in document) {
-        let evt = document.createEvent("HTMLEvents");
-        evt.initEvent("scroll", false, true);
-        document.dispatchEvent(evt);
-      }
-      else {
-        document.fireEvent("scroll");
-      }
-    }, 500)
-  })
-
-</script>
-            </div>
           
         
       </div>
@@ -526,7 +333,7 @@
             <section class="post-header">
   <h1 class="post-title">
     <a class="post-title-link" href="https://zooyooye.github.io/post/0003/">
-      每日更新（建筑篇三）
+      01.BIM技术
     </a>
   </h1>
   <div class="post-meta">
@@ -534,7 +341,7 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2020-07-22 23:06:41">2020-07-22</span>
+      <span class="publish-time" data-t="2020-10-15 01:13:11">2020-10-15</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -543,8 +350,8 @@
       <span class="pc-show language" data-lan="category-in">分类于</span>
       
       
-      <a href="https://zooyooye.github.io/tag/gbRANKUBD/">
-        <span>每日更新</span>
+      <a href="https://zooyooye.github.io/tag/hqWPacK4F/">
+        <span>目录</span>
       </a>
       
       
@@ -558,38 +365,14 @@
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>231<span class="pc-show language" data-lan="words">字数</span></span>
+      <span>21<span class="pc-show language" data-lan="words">字数</span></span>
     </span>
     
   </div>
 </section>
             <div class="post-body next-md-body" id="post_body">
-              <p>监理（保留最近七天更新记录）</p>
-<!-- more -->
-<h1 id="0722更新">07.22更新</h1>
-<h2 id="2020监理案例">2020监理案例</h2>
-<p>精讲班-HQ-王双增（07~12）<br>
-精讲班-JG-陈江潮（更新）<br>
-精讲班-ES-郭炜（26~38）<br>
-精讲班-CSW-宋协清（01~09）</p>
-<h2 id="2020监理法规概论">2020监理法规概论</h2>
-<p>预习班-JG-徐云博（02~03）<br>
-预习班-新教材解读-王东兴（01~03）<br>
-精讲班-ESS-汪东兴（01~17）<br>
-精讲班-JG-徐云博（01~13）<br>
-精讲班-HQ-孙玉保（01~19）</p>
-<h2 id="2020监理合同管理">2020监理合同管理</h2>
-<p>真题班-HQ-2016-2019真题解析<br>
-预习班-JG-王竹梅（02~03）<br>
-精讲班-ES-唐忍（020~022）</p>
-<h2 id="2020监理三控">2020监理三控</h2>
-<p>真题班-ZY-真题破解-张佳楠<br>
-预习班-三控-HQ-指导班<br>
-预习班-三控-ESS-新教材讲解<br>
-预习班-进度-JG-预习班-李娜<br>
-预习班-投资-JG-预习班-李娜<br>
-预习班-三控-PDQ-预习班-江老师（01~49）<br>
-预习班-三控-ESS-基础预习班（01~11）</p>
+              <p>1.<a href="https://edu.zhulong.com/lesson/8248-1.html#f=s_search_0_1">施工全过程BIM技术应用</a>2499<br>
+2.<a href="https://edu.zhulong.com/lesson/3640-1.html#f=s_search_0_1">土建BIM工程师训练营</a>1999</p>
 
             </div>
             
@@ -606,7 +389,7 @@
     </li>
     <li class="post-copyright-link">
       <strong class="language" data-lan="link">本文链接：</strong>
-      <a href="https://zooyooye.github.io/post/0003/" title="每日更新（建筑篇三）">https://zooyooye.github.io/post/0003/</a>
+      <a href="https://zooyooye.github.io/post/0003/" title="01.BIM技术">https://zooyooye.github.io/post/0003/</a>
     </li>
     <li class="post-copyright-license">
       <strong class="language" data-lan="copyright">版权声明： </strong>
@@ -615,7 +398,7 @@
   </ul>
   <div class="tags">
     
-      <a href="https://zooyooye.github.io/tag/gbRANKUBD/"># 每日更新</a>
+      <a href="https://zooyooye.github.io/tag/hqWPacK4F/"># 目录</a>
     
   </div>
   <div class="nav">
@@ -623,10 +406,6 @@
       
     </div>
     <div class="nav-next">
-      
-        <a class="nav-pc-next" title="每日更新（建筑篇二）" href="https://zooyooye.github.io/post/0002/">每日更新（建筑篇二）</a>
-        <a class="nav-mobile-next" title="每日更新（建筑篇二）" href="https://zooyooye.github.io/post/0002/">下一篇</a>
-        <i class="fa fa-chevron-right"></i>
       
     </div>
   </div>
@@ -1148,292 +927,61 @@
     <div class="result" id="result">
       
       <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://zooyooye.github.io/post/0006/"" data-c="
+          &lt;p&gt;1.&lt;a href=&#34;https://edu.zhulong.com/lesson/8996-1.html#f=s_search_0_1&#34;&gt;项目经理高端研修班&lt;/a&gt;3999&lt;br&gt;
+2.&lt;a href=&#34;https://edu.zhulong.com/lesson/8386-1.html#f=s_search_0_1&#34;&gt;项目总工高端研修班&lt;/a&gt;1999&lt;br&gt;
+3.&lt;a href=&#34;https://edu.zhulong.com/lesson/9154-1.html#f=s_search_0_1&#34;&gt;房建施工技术员晋升训练营&lt;/a&gt;1499&lt;br&gt;
+4.&lt;a href=&#34;https://edu.zhulong.com/lesson/8026-1.html#f=s_search_0_1&#34;&gt;房建施工全阶段技术管理详解&lt;/a&gt;1999&lt;br&gt;
+5.&lt;a href=&#34;https://edu.zhulong.com/lesson/6818-1.html#f=s_search_0_1&#34;&gt;精装修工程师训练营&lt;/a&gt;1499&lt;br&gt;
+6.&lt;a href=&#34;https://edu.zhulong.com/lesson/5483-1.html#f=s_search_0_1&#34;&gt;装饰装修全流程项目实操培训&lt;/a&gt;1499&lt;br&gt;
+7.&lt;a href=&#34;https://edu.zhulong.com/lesson/8401-1.html#f=s_search_0_1&#34;&gt;二次结构及防水保温施工管理&lt;/a&gt;999&lt;br&gt;
+8.&lt;a href=&#34;https://edu.zhulong.com/lesson/8893-1.html#f=s_search_0_1&#34;&gt;土建监理工程师速成班&lt;/a&gt;999&lt;br&gt;
+9.&lt;a href=&#34;https://edu.zhulong.com/lesson/5931-1.html#f=s_search_0_1&#34;&gt;项目经理进阶培优&lt;/a&gt;980&lt;/p&gt;
+">04.建筑施工</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://zooyooye.github.io/post/0005/"" data-c="
+          &lt;p&gt;03.路桥市政&lt;/p&gt;
+">03.路桥市政</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://zooyooye.github.io/post/0004/"" data-c="
+          &lt;p&gt;02.工程造价&lt;/p&gt;
+">02.工程造价</a>
+      </div>
+      
+      <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://zooyooye.github.io/post/0003/"" data-c="
-          &lt;p&gt;监理（保留最近七天更新记录）&lt;/p&gt;
-&lt;!-- more --&gt;
-&lt;h1 id=&#34;0722更新&#34;&gt;07.22更新&lt;/h1&gt;
-&lt;h2 id=&#34;2020监理案例&#34;&gt;2020监理案例&lt;/h2&gt;
-&lt;p&gt;精讲班-HQ-王双增（07~12）&lt;br&gt;
-精讲班-JG-陈江潮（更新）&lt;br&gt;
-精讲班-ES-郭炜（26~38）&lt;br&gt;
-精讲班-CSW-宋协清（01~09）&lt;/p&gt;
-&lt;h2 id=&#34;2020监理法规概论&#34;&gt;2020监理法规概论&lt;/h2&gt;
-&lt;p&gt;预习班-JG-徐云博（02~03）&lt;br&gt;
-预习班-新教材解读-王东兴（01~03）&lt;br&gt;
-精讲班-ESS-汪东兴（01~17）&lt;br&gt;
-精讲班-JG-徐云博（01~13）&lt;br&gt;
-精讲班-HQ-孙玉保（01~19）&lt;/p&gt;
-&lt;h2 id=&#34;2020监理合同管理&#34;&gt;2020监理合同管理&lt;/h2&gt;
-&lt;p&gt;真题班-HQ-2016-2019真题解析&lt;br&gt;
-预习班-JG-王竹梅（02~03）&lt;br&gt;
-精讲班-ES-唐忍（020~022）&lt;/p&gt;
-&lt;h2 id=&#34;2020监理三控&#34;&gt;2020监理三控&lt;/h2&gt;
-&lt;p&gt;真题班-ZY-真题破解-张佳楠&lt;br&gt;
-预习班-三控-HQ-指导班&lt;br&gt;
-预习班-三控-ESS-新教材讲解&lt;br&gt;
-预习班-进度-JG-预习班-李娜&lt;br&gt;
-预习班-投资-JG-预习班-李娜&lt;br&gt;
-预习班-三控-PDQ-预习班-江老师（01~49）&lt;br&gt;
-预习班-三控-ESS-基础预习班（01~11）&lt;/p&gt;
-">每日更新（建筑篇三）</a>
+          &lt;p&gt;1.&lt;a href=&#34;https://edu.zhulong.com/lesson/8248-1.html#f=s_search_0_1&#34;&gt;施工全过程BIM技术应用&lt;/a&gt;2499&lt;br&gt;
+2.&lt;a href=&#34;https://edu.zhulong.com/lesson/3640-1.html#f=s_search_0_1&#34;&gt;土建BIM工程师训练营&lt;/a&gt;1999&lt;/p&gt;
+">01.BIM技术</a>
       </div>
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://zooyooye.github.io/post/0002/"" data-c="
-          &lt;p&gt;二建（保留最近七天更新记录）&lt;/p&gt;
-&lt;h1 id=&#34;-more-0906更新&#34;&gt;&lt;!-- more --&gt;&lt;br&gt;
-09.06更新&lt;/h1&gt;
-&lt;h2 id=&#34;2020二建市政&#34;&gt;2020二建市政&lt;/h2&gt;
-&lt;p&gt;模考押题班-市政-HQ-点题班-专题课&lt;br&gt;
-模考押题班-市政-HQ-护航计划-王维雪&lt;br&gt;
-模考押题班-市政-XT-水平测试+仿真模考&lt;br&gt;
-模考押题班-市政-HX-模考点题班-李四德&lt;/p&gt;
-&lt;h2 id=&#34;2020二建法规&#34;&gt;2020二建法规&lt;/h2&gt;
-&lt;p&gt;模考押题班-法规-HQ-万人模考&lt;br&gt;
-模考押题班-法规-HX-模考点题-陈印&lt;br&gt;
-模考押题班-法规-XT-水平测试+仿真模考&lt;/p&gt;
-&lt;h2 id=&#34;2020二建公路&#34;&gt;2020二建公路&lt;/h2&gt;
-&lt;p&gt;模考押题班-公路-HQ-护航计划-吴然&lt;br&gt;
-模考押题班-公路-HQ-专题课-吴然&lt;/p&gt;
-&lt;h2 id=&#34;2020二建管理&#34;&gt;2020二建管理&lt;/h2&gt;
-&lt;p&gt;模考押题班-管理-HQ-点题班-专题课&lt;br&gt;
-模考押题班-管理-HQ-护航计划-池亚红&lt;br&gt;
-模考押题班-管理-HX-模考点题-朱俊文&lt;br&gt;
-模考押题班-管理-XT-水平测试+仿真模考&lt;/p&gt;
-&lt;h2 id=&#34;2020二建建筑&#34;&gt;2020二建建筑&lt;/h2&gt;
-&lt;p&gt;模考押题班-建筑-HQ-万人模考-潘晓宇&lt;br&gt;
-模考押题班-建筑-HQ-点题班-专题课&lt;br&gt;
-模考押题班-建筑-HQ-护航计划-潘晓宇&lt;br&gt;
-模考押题班-建筑-XT-水平测试+仿真模考&lt;br&gt;
-模考押题班-建筑-HX-模考点题-王玮&lt;/p&gt;
-">每日更新（建筑篇二）</a>
-      </div>
-      
-      <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://zooyooye.github.io/post/RRLFT77c9/"" data-c="
-          &lt;p&gt;2020一建&lt;br&gt;
-经济已更09.02&lt;br&gt;
-机电已更09.05&lt;br&gt;
-法规已更09.05&lt;br&gt;
-管理已更09.05&lt;/p&gt;
-&lt;p&gt;2020二建&lt;br&gt;
-法规已更7.11&lt;br&gt;
-管理已更7.11&lt;br&gt;
-建筑已更7.11&lt;br&gt;
-市政已更7.22&lt;/p&gt;
-&lt;p&gt;2020监理&lt;br&gt;
-三控已更7.22&lt;br&gt;
-合同已更7.22&lt;br&gt;
-概论已更7.22&lt;br&gt;
-案例已更7.22&lt;/p&gt;
-">更新提示（草稿）</a>
+          &lt;p&gt;111&lt;/p&gt;
+">00.最近更新</a>
       </div>
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://zooyooye.github.io/post/0001/"" data-c="
-          &lt;p&gt;一建（保留最近七天更新记录）&lt;/p&gt;
-&lt;h1 id=&#34;-more-0905更新&#34;&gt;&lt;!-- more --&gt;&lt;br&gt;
-09.05更新&lt;/h1&gt;
-&lt;h2 id=&#34;2020一建机电&#34;&gt;2020一建机电&lt;/h2&gt;
-&lt;p&gt;精讲班-机电-JG-精讲班-唐琼&lt;br&gt;
-习题班-机电-JG-习题班-唐琼&lt;br&gt;
-习题班-机电-JG-真题班-真题班&lt;br&gt;
-习题班-机电-JG-百题大战-涂雪芝&lt;br&gt;
-习题班-机电-HQ-优选题分班-涂雪芝&lt;br&gt;
-习题班-机电-DL-精粹强化班-刘天磊&lt;br&gt;
-习题班-机电-ZY-点题直播班-董美英&lt;br&gt;
-习题班-机电-JH-习题班-高扬&lt;br&gt;
-习题班-机电-习题训练&lt;br&gt;
-冲刺班-机电-HQ-案例特训-王克&lt;br&gt;
-冲刺班-机电-JG-精华考点一本通&lt;br&gt;
-冲刺班-机电-HQ-密训班-苏婷&lt;br&gt;
-冲刺班-机电-JGS-案例突破班-朱培培&lt;br&gt;
-冲刺班-机电-ES-案例专项班-韩泽&lt;br&gt;
-冲刺班-机电-ES-冲剌班-韩　铎&lt;br&gt;
-冲刺班-机电-ES-直播集训班-韩铎&lt;br&gt;
-冲刺班-机电-ZY-强化技巧-宋贺&lt;br&gt;
-冲刺班-机电-CSW-案例班-彭磊&lt;br&gt;
-冲刺班-机电-XT-名师带读-彭 磊&lt;br&gt;
-冲刺班-机电-HX-案例班-朱旭阳&lt;br&gt;
-冲刺班-机电-HX-冲刺班-朱培浩&lt;br&gt;
-冲刺班-机电-HX-专项突破-王 智&lt;br&gt;
-冲刺班-机电-ZD-冲刺班-王建波&lt;br&gt;
-冲刺班-机电-DL-冲刺班-陈剑铭&lt;br&gt;
-模考班-机电-JG-冲刺考点串讲-唐琼&lt;br&gt;
-模考班-机电-JG-冲关宝典&lt;br&gt;
-模考班-机电-JG-典型例题文档&lt;br&gt;
-模考班-机电-HQ-模考点题班-涂雪芝&lt;br&gt;
-模考班-机电-HQ-万人模考&lt;br&gt;
-押题班-机电-HQ-考点手册+高频考点&lt;br&gt;
-模考押题班-机电-JGS-一次通关题&lt;br&gt;
-模考押题班-机电-XT-口袋书&lt;br&gt;
-模考押题班-机电-XHC-模考冲刺卷&lt;br&gt;
-模考押题班-机电-DL-模考卷&lt;br&gt;
-模考押题班-机电-经典100题&lt;br&gt;
-模考押题班-机电-集团内训-模考测评卷&lt;br&gt;
-模考押题班-机电-必做1000题&lt;br&gt;
-模考押题班-机电-集训摸摸底&lt;br&gt;
-模考押题班-机电-考点汇总&lt;br&gt;
-模考押题班-机电-考点手册&lt;br&gt;
-模考押题班-机电-央企内训-考点40页&lt;br&gt;
-模考押题班-机电-HX-模考班-朱培培&lt;br&gt;
-模考押题班-机电-YL-案例解题思路&lt;br&gt;
-模考押题班-机电-YL-考点荟萃+易错易漏关键点&lt;br&gt;
-模考押题班-机电-ES-考题突击班-韩　铎&lt;br&gt;
-模考押题班-机电-ZY-案例标答专项训练&lt;br&gt;
-模考押题班-机电-ZY-一周提升20分强化资料&lt;/p&gt;
-&lt;h2 id=&#34;2020一建管理&#34;&gt;2020一建管理&lt;/h2&gt;
-&lt;p&gt;精讲班-JG-基础精讲-丰景春（43~60）&lt;br&gt;
-精讲班-JG-习题班-李娜（更新）&lt;br&gt;
-习题班-HQ-优选提分班-肖国祥（03~28）&lt;br&gt;
-习题班-XT-习题巩固-何莲（更新）&lt;br&gt;
-习题班-ES-阶段测评直播班-赵春晓（更新）&lt;br&gt;
-习题班-DL-精粹强化班-王强&lt;br&gt;
-习题班-习题训练&lt;br&gt;
-习题班-ZAL-习题解析-赵爱林&lt;br&gt;
-冲刺班-JG-冲关宝典&lt;br&gt;
-冲刺班-JG-精华考点一本通&lt;br&gt;
-冲刺班-HQ-密训班-张君（01~15）&lt;br&gt;
-冲刺班-ESS-冲刺班-赵春晓（03~25）&lt;br&gt;
-冲刺班-集团集训-肖国祥&lt;br&gt;
-冲刺班-集团内训-面授精讲-张景勋&lt;br&gt;
-冲刺班-ES-考前直播集训-赵春晓（01~08）&lt;br&gt;
-冲刺班-DL-冲刺班-关 宇&lt;br&gt;
-冲刺班-DL-龙炎飞（01~09）&lt;br&gt;
-冲刺班-DL-巅峰训练-漆建敏&lt;br&gt;
-冲刺班-ZY-点题班-朱俊文&lt;br&gt;
-冲刺班-ZY-强化技巧班-缴广才&lt;br&gt;
-冲刺班-XT-专项突破-陈 晨&lt;br&gt;
-冲刺班-JGS-高频知识点透析（01~18）&lt;br&gt;
-冲刺班-JGS-专题班-赵长歌（01~10）&lt;br&gt;
-冲刺班-HX-冲刺班-朱俊文（01~10）&lt;br&gt;
-冲刺班-HX-专题突破-陈行（01~06）&lt;br&gt;
-冲刺班-ZD-冲刺班-宿济南（01~14）&lt;br&gt;
-模考班-JG-冲刺考点串讲-李娜&lt;br&gt;
-模考班-JG-典型例题文档&lt;br&gt;
-模考班-HQ-模考点题-张君&lt;br&gt;
-模考班-HQ-万人模考&lt;br&gt;
-押题班-HQ-考点速记手册&lt;br&gt;
-模考押题班-管理-必考300句葵花宝典&lt;br&gt;
-模考押题班-管理-必做1000题&lt;br&gt;
-模考押题班-管理-经典100题&lt;br&gt;
-模考押题班-管理-考点汇总&lt;br&gt;
-模考押题班-管理-考点手册&lt;br&gt;
-模考押题班-管理-考前必做200题&lt;br&gt;
-模考押题班-管理-XT-口袋书&lt;br&gt;
-模考押题班-管理-JGS-一次通关题&lt;br&gt;
-模考押题班-管理-XHC-模考冲刺卷&lt;br&gt;
-模考押题班-管理-DL-模考卷&lt;br&gt;
-模考押题班-管理-集团内训-模考测评卷&lt;br&gt;
-模考押题班-管理-冲刺押题卷-王清涛&lt;br&gt;
-模考押题班-管理-HX-模考班-朱俊文&lt;br&gt;
-模考押题班-管理-YL-记忆口诀+考点荟萃+易错易漏关键点&lt;br&gt;
-模考押题班-管理-ZY-集训摸摸底&lt;br&gt;
-模考押题班-管理-ZY-考前冲刺卷&lt;br&gt;
-模考押题班-管理-ES-专题突击班-赵春晓&lt;/p&gt;
-&lt;h2 id=&#34;2020一建法规&#34;&gt;2020一建法规&lt;/h2&gt;
-&lt;p&gt;习题班-法规-JG-百题大战-徐洋&lt;br&gt;
-习题班-法规-JG-习题班-王竹梅（05~20）&lt;br&gt;
-习题班-法规-JG-真题班-武劲松&lt;br&gt;
-习题班-法规-HQ-优选提分班-蔡恒（03~12）&lt;br&gt;
-习题班-法规-XT-习题巩固-祝国东（更新）&lt;br&gt;
-习题班-法规-ZY-点题直播班-关涛（更新）&lt;br&gt;
-习题班-法规-ES-阶段测试直播-刘丹（01~06）&lt;br&gt;
-习题班-法规-DL-精粹强化班-吕占涛&lt;br&gt;
-习题班-法规-习题训练&lt;br&gt;
-冲刺班-法规-JG-冲刺考点串讲-王竹梅&lt;br&gt;
-冲刺班-法规-JG-精华考点一本通&lt;br&gt;
-冲刺班-法规-HQ-冲刺班-陈印（01~08）&lt;br&gt;
-冲刺班-法规-HQ-密训班-蔡恒（01~09）&lt;br&gt;
-冲刺班-法规-CSW-考点强化班-李轻舟（05~16）&lt;br&gt;
-冲刺班-法规-ZY-强化技巧课-房超（更新）&lt;br&gt;
-冲刺班-法规-葵花宝典.讲解面授班-陈印（01~12）&lt;br&gt;
-冲刺班-法规-ES-冲刺班-刘 丹（01~09）&lt;br&gt;
-冲刺班-法规-XT-专项突破-武海峰&lt;br&gt;
-冲刺班-法规-JGS-高频知识点透析（01~51）&lt;br&gt;
-冲刺班-法规-JGS-专题班-武海锋（01~11）&lt;br&gt;
-冲刺班-法规-JGS-专题专练-邱磊（01~13）&lt;br&gt;
-冲刺班-法规-HX-冲刺串讲-陈印（01~11）&lt;br&gt;
-冲刺班-法规-HX-专题突破-张峰&lt;br&gt;
-冲刺班-法规-ZD-冲刺串讲班-陈洁&lt;br&gt;
-冲刺班-法规-DL-冲刺串讲班-陈 印（01~08）&lt;br&gt;
-冲刺班-法规-DL-巅峰训练-吕占涛&lt;br&gt;
-模考班-法规-JG-冲关宝典&lt;br&gt;
-模考班-法规-JG-典型例题文档&lt;br&gt;
-模考班-法规-HQ-模考点题班-徐洋（01~04）&lt;br&gt;
-模考班-法规-HQ-万人模考&lt;br&gt;
-模考押题班-法规-经典100题&lt;br&gt;
-模考押题班-法规-密训卷&lt;br&gt;
-模考押题班-法规-压轴必做1000题&lt;br&gt;
-模考押题班-法规-XT-口袋书&lt;br&gt;
-模考押题班-法规-XT-模考班-君君老师&lt;br&gt;
-模考押题班-法规-JGS-一次通关题&lt;br&gt;
-模考押题班-法规-XHC-模考冲刺卷&lt;br&gt;
-模考押题班-法规-DL-模考卷&lt;br&gt;
-模考押题班-法规-考点汇总&lt;br&gt;
-模考押题班-法规-考点手册&lt;br&gt;
-模考押题班-法规-考前冲刺卷&lt;br&gt;
-模考押题班-法规-DL-葵花宝典最新版-陈印&lt;br&gt;
-模考押题班-法规-HX-模考班-陈印&lt;br&gt;
-模考押题班-法规-YL-记忆口诀+考点荟萃+易错易漏关键点&lt;br&gt;
-模考押题班-法规-ES-考前直播集训-刘　丹&lt;br&gt;
-模考押题班-法规-ES-考题突击班-陈 印&lt;br&gt;
-模考押题班-法规-ZY-集训摸摸底&lt;br&gt;
-模考押题班-法规-ZD-模考班-陈洁&lt;/p&gt;
-&lt;hr&gt;
-&lt;h1 id=&#34;0902更新&#34;&gt;09.02更新&lt;/h1&gt;
-&lt;h2 id=&#34;2020一建经济&#34;&gt;2020一建经济&lt;/h2&gt;
-&lt;p&gt;真题班-JG-真题班-齐锡晶&lt;br&gt;
-习题班-JG-习题班-达江（10~27）&lt;br&gt;
-习题班-JG-百题大战-胡安然&lt;br&gt;
-习题班-HQ-优选提分班-张湧（02~10）&lt;br&gt;
-习题班-XT-习题巩固-梁伊（03~10）&lt;br&gt;
-习题班-ZY-点题直播班-关涛&lt;br&gt;
-习题班-ES-阶段测试直播-王竹梅&lt;br&gt;
-习题班-ES-习题精讲-王竹梅&lt;br&gt;
-习题班-经济-习题训练&lt;br&gt;
-习题班-DL-精粹强化班-韩庆娟&lt;br&gt;
-冲刺班-JG-精华考点一本通&lt;br&gt;
-冲刺班-HQ-密训班-张湧（01~09）&lt;br&gt;
-冲刺班-JH-冲刺班-邱磊（06~12）&lt;br&gt;
-冲刺班-集团内训-梅世强&lt;br&gt;
-冲刺班-DL-巅峰训练-韩庆娟&lt;br&gt;
-冲刺班-DL-面授冲刺班-黄金芳（01~09）&lt;br&gt;
-冲刺班-XT-冲刺专题班-邱磊&lt;br&gt;
-冲刺班-XT-名师带读-刘志彤（01~12）&lt;br&gt;
-冲刺班-XT-专题突破-刘志彤（01~12）&lt;br&gt;
-冲刺班-HX-冲刺班-徐 蓉（01~09）&lt;br&gt;
-冲刺班-HX-专题突破-李理&lt;br&gt;
-冲刺班-ES-冲刺班-王东xing（01~08）&lt;br&gt;
-精讲班-HQ-精讲班-刘戈（37~65）&lt;br&gt;
-精讲班-CSW-教材精讲-王竹梅（17~20）&lt;br&gt;
-精讲班-ZY-精讲直播1+2-段继校+关涛（更新）&lt;br&gt;
-精讲班-ZY-精讲课程-关涛（23~27）&lt;br&gt;
-模考班-HQ-考点速记手册&lt;br&gt;
-模考班-JG-冲刺考点串讲-达江（01~08）&lt;br&gt;
-模考班-JG-冲关宝典&lt;br&gt;
-模考班-HQ-模考点题-胡安然&lt;br&gt;
-模考班-HQ-万人模考&lt;br&gt;
-模考班-JGS-一次通关题&lt;br&gt;
-模考班-XT-仿真模考卷三套&lt;br&gt;
-模考班-XT-口袋书&lt;br&gt;
-模考班-XT-模考班-粱一老师&lt;br&gt;
-模考班-XHC-模考冲刺卷&lt;br&gt;
-模考班-DL-模考卷&lt;br&gt;
-模考班-必做1000题&lt;br&gt;
-模考班-经典100题&lt;br&gt;
-模考班-考点手册&lt;br&gt;
-模考班-考点资料&lt;br&gt;
-模考班-考前冲刺卷&lt;br&gt;
-模考班-集团内训-模考测评卷&lt;br&gt;
-模考班-HX-模考班-徐蓉&lt;br&gt;
-模考班-YL-记忆口诀+考点荟萃+1000题+易错易漏关键点&lt;br&gt;
-模考班-ES-考题突击班-王东兴&lt;br&gt;
-模考班-ZY-必备考点-梅世强&lt;br&gt;
-模考班-ZY-集训摸摸底&lt;br&gt;
-模考班-考前视频解析-梅世强&lt;br&gt;
-模考班-JG-典型例题文档&lt;/p&gt;
-">每日更新（建筑篇一）</a>
+          &lt;p&gt;说明：因课程众多，目录只作参考，一切以zl为准。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://dlsharing.top/0002&#34;&gt;00.最新课程&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://dlsharing.top/0003&#34;&gt;01.BIM技术&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://dlsharing.top/0004&#34;&gt;02.工程造价&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://dlsharing.top/0005&#34;&gt;03.路桥市政&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://dlsharing.top/0006&#34;&gt;04.建筑施工&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://dlsharing.top/0007&#34;&gt;05.建筑设计&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://dlsharing.top/0008&#34;&gt;06.电气工程&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://dlsharing.top/0009&#34;&gt;07.结构设计&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://dlsharing.top/0010&#34;&gt;08.园林景观&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://dlsharing.top/0011&#34;&gt;09.室内设计&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://dlsharing.top/0012&#34;&gt;10.暖通空调&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://dlsharing.top/0013&#34;&gt;11.给水排水&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://dlsharing.top/0014&#34;&gt;12.岩土工程&lt;/a&gt;&lt;/p&gt;
+">ZL目录</a>
       </div>
       
       <div class="item">
