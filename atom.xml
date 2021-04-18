@@ -2,14 +2,14 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zooyooye.github.io</id>
     <title>大佬分享社</title>
-    <updated>2020-10-20T17:43:42.755Z</updated>
+    <updated>2021-04-18T10:30:55.400Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zooyooye.github.io"/>
     <link rel="self" href="https://zooyooye.github.io/atom.xml"/>
     <subtitle>good good study</subtitle>
     <logo>https://zooyooye.github.io/images/avatar.png</logo>
     <icon>https://zooyooye.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2020, 大佬分享社</rights>
+    <rights>All rights reserved 2021, 大佬分享社</rights>
     <entry>
         <title type="html"><![CDATA[ZL目录]]></title>
         <id>https://zooyooye.github.io/post/0001/</id>
